@@ -1,0 +1,102 @@
+/*** 
+
+====================================================================
+Section Title
+====================================================================
+
+***/
+
+.sec-title {
+    position: relative;
+    margin-bottom: 50px;
+    .sub-title {
+        position: relative;
+        font-size: var(--sec-title-subtitle-font-size);
+        line-height: var(--sec-title-subtitle-line-height);
+        font-weight: var(--sec-title-subtitle-font-weight);
+        font-family: var(--sec-title-subtitle-font-family);
+        display: inline-block;
+        top: -10px;
+        @include for-sm{
+            br{
+                display: none;
+            }
+            &:after,
+            &:before{
+                display: none;
+            }
+        }
+        &:before{
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            margin-top: -1px;
+            height: 2px;
+            width: 26px;
+            margin-left: 10px;
+            background: var(--gradient-1);
+            content: "";
+        }
+        &::after{
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            margin-top: -3px;
+            height: 6px;
+            width: 6px;
+            margin-left: 36px;
+            background: var(--gradient-1);
+            content: "";
+            border-radius: 50%;
+        }
+    }
+    h1 {
+        position: relative;
+        font-size: 60px;
+        line-height: 1em;
+        color: var(--sec-title-color);
+        font-family: var(--sec-title-font-family);
+        font-weight: var(--sec-title-font-weight);
+    }
+    h2 {
+        position: relative;
+        font-size: var(--sec-title-font-size);
+        color: var(--sec-title-color);
+        font-family: var(--sec-title-font-family);
+        font-weight: var(--sec-title-font-weight);
+        letter-spacing: -.05em;
+        margin-top: -5px;
+        margin-bottom: 0;
+        @include for-md {
+            font-size: 36px;
+            line-height: 1.2em;
+        }
+        @include for-xs {
+            font-size: 30px;
+            line-height: 1.2em;
+        }
+    }
+    .text {
+        margin-top: 30px;
+    }
+}
+
+.sec-title.light{
+    .sub-title,    
+    h2,
+    h1{
+        color: #fff;
+    }
+    .text{
+        color: #8c8f94;
+    }
+}
+
+
+.sec-title.text-center{
+    .float-text-two:before,
+    .float-text:before{
+        left: 50%;
+        margin-left: -42px;
+    }
+}
