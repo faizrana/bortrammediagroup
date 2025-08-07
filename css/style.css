@@ -14273,3 +14273,7 @@ Sidebar
 .footer-bottom .copyright-text a:hover {
   color: #ffffff;
 }
+
+.main-header .logo img {
+  height: 50px;
+}
