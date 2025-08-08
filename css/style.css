@@ -14307,3 +14307,68 @@ Sidebar
 .main-header .info-btn .icon {
   width: 50px;
 }
+.btn-black {
+  position: relative;
+  display: inline-block;
+  padding: 16px 50px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  background: black;
+  border: 2px solid white;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.btn-black::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transition: right 0.4s ease;
+  z-index: 0;
+}
+
+.btn-black::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-black span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.btn-black:hover {
+  transform: scale(1.08) rotate(-1deg);
+  border-color: transparent;
+  box-shadow: 0 0 25px rgba(255,255,255,0.5);
+}
+
+.btn-black:hover::before {
+  right: 0; /* Sweeps in from right */
+}
+
+.btn-black:hover::after {
+  opacity: 1;
+}
+
+.btn-black:hover span {
+  color: black; /* Text turns black when the white wipe passes */
+}
+
+.btn-black:active {
+  transform: scale(0.96);
+}
