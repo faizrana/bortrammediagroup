@@ -709,3 +709,33 @@ var THEMEMASCOT = {};
 	});	
 
 })(window.jQuery);
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const faqList = document.getElementById('faq-list');
+  const toggleBtn = document.getElementById('faq-toggle-btn');
+  const faqs = faqList.querySelectorAll('li.accordion.block');
+  const initialVisibleCount = 5;
+  let isExpanded = false;
+
+  toggleBtn.addEventListener('click', () => {
+    if (!isExpanded) {
+      // Show all
+      faqs.forEach(li => li.style.display = 'block');
+      toggleBtn.textContent = 'View Less';
+      isExpanded = true;
+    } else {
+      // Show only first 5
+      faqs.forEach((li, i) => {
+        li.style.display = i < initialVisibleCount ? 'block' : 'none';
+      });
+      toggleBtn.textContent = 'View All';
+      isExpanded = false;
+    }
+  });
+});

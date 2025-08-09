@@ -16296,3 +16296,12 @@ Sidebar
 .header-style-two .header-lower .info-btn small {
   color: #cecece;
 }
+
+
+/* Hide all FAQ items beyond the 5th */
+#faq-list li.accordion.block {
+  display: none;
+}
+#faq-list li.accordion.block:nth-child(-n+5) {
+  display: block;
+}
