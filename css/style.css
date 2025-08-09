@@ -16305,3 +16305,8 @@ Sidebar
 #faq-list li.accordion.block:nth-child(-n+5) {
   display: block;
 }
+
+
+.faqs-section .upper-box .bg::after {
+  background-color: #f3f3f3;
+}
