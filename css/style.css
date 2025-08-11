@@ -16135,12 +16135,6 @@ Sidebar
   border-bottom: 40px solid #f4f4f4;
 }
 
-.main-header .info-btn {
-  top: 21px;
-}
-
-
-
 
 .marquee {
   display: flex;
@@ -16302,6 +16296,7 @@ Sidebar
 #faq-list li.accordion.block {
   display: none;
 }
+
 #faq-list li.accordion.block:nth-child(-n+5) {
   display: block;
 }
@@ -16309,4 +16304,26 @@ Sidebar
 
 .faqs-section .upper-box .bg::after {
   background-color: #f3f3f3;
+}
+
+.page-title .title {
+  margin-top: 50px;
+}
+
+.page-breadcrumb a {
+  color: white !important;
+}
+
+.page-breadcrumb li:last-of-type {
+  color: gray !important;
+}
+
+.services-section .bg::before,
+.service-block .inner-box::before {
+  background-color: #f3f3f3;
+}
+
+.header-style-two .header-lower .outer-box {
+  min-height: auto;
+  margin-top: 0;
 }
