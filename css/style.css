@@ -16331,3 +16331,23 @@ Sidebar
   min-height: auto;
   margin-top: 0;
 }
+
+
+.product-block .inner-box {
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+}
+
+
+
+.product-block .image {
+  width: 100%;
+  display: flex;
+}
+.product-block img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  flex: 1;
+}
