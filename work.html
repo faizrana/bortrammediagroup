@@ -2,461 +2,997 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>Mizox | Digital Marketing HTML Template </title>
-	<!-- Stylesheets -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>Our Work</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Gallery swiper arrows */
+    .featured-products .swiper-button-next,
+    .featured-products .swiper-button-prev {
+      color: #000;
+    }
 
-	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+    .product-block .inner-box {
+      cursor: pointer;
+    }
 
-	<!-- Responsive -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-	<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    /* Modal backdrop */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      animation: fadeIn 250ms ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    /* Close button */
+    .video-modal .close {
+      position: absolute;
+      top: 18px;
+      right: 26px;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+      z-index: 10000;
+      transition: transform .15s ease;
+    }
+
+    .video-modal .close:hover {
+      transform: scale(1.06);
+    }
+
+    /* Modal swiper container */
+    .modal-swiper {
+      width: min(1200px, 92vw);
+      background: #000;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+      transform: scale(.96);
+      animation: scaleIn 200ms ease-out forwards;
+    }
+
+    @keyframes scaleIn {
+      to {
+        transform: scale(1)
+      }
+    }
+
+    /* Video container */
+    .video-slide {
+      position: relative;
+      background: #000;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .video-slide iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 0;
+      display: block;
+    }
+
+    /* Title + description */
+    .video-info {
+      padding: 18px 20px;
+      background: #111;
+      color: #fff;
+      text-align: left;
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    .video-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .video-description {
+      font-size: 0.95rem;
+      color: #bbb;
+      line-height: 1.4;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Modal swiper arrows */
+    .modal-swiper .swiper-button-next,
+    .modal-swiper .swiper-button-prev {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .7);
+    }
+
+    /* Gallery card hover zoom */
+    .product-block .inner-box .image img {
+      transition: transform .3s ease;
+    }
+
+    .product-block .inner-box:hover .image img {
+      transform: scale(1.03);
+    }
+
+    .gallery-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      /* space between arrows and slider */
+    }
+
+    .gallery-button-prev,
+    .gallery-button-next {
+      cursor: pointer;
+      font-size: 28px;
+      /* padding: 8px 14px; */
+      height: 60px;
+      width: 60px;
+      display: flex;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.7;
+    }
+
+    .gallery-button-prev.swiper-button-disabled,
+    .gallery-button-next.swiper-button-disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .gallery-button-prev {
+      left: -100px;
+      top: 215px;
+    }
+
+    .gallery-button-next {
+      left: 100px;
+      top: 215px;
+    }
+
+    .gallery-button-prev:hover,
+    .gallery-button-next:hover {
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body>
-
-	<div class="page-wrapper">
-
-		<!-- Preloader -->
-		<div class="preloader"></div>
-
-		<!-- Main Header-->
-		<header class="main-header header-style-two">
-			<!-- Header Lower -->
-			<div class="header-lower">
-				<!-- Main box -->
-				<div class="main-box">
-					<div class="logo-box">
-						<div class="logo"><a href="index.html"><img src="images/logo.png" alt=""></a></div>
-					</div>
+  <div class="page-wrapper">
 
 
-					<nav class="nav main-menu">
-						<ul class="navigation">
-							<li><a href="/">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="services.html">Services</a></li>
-							<li><a href="equipment.html">Equipment</a></li>
-							<li class="current"><a href="work.html">Our Work</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</nav>
 
-					<!-- Main Menu End-->
-					<div class="outer-box">
-						<a href="tel:+92(8800)9806" class="info-btn">
-							<img src="images/icons/icon-chat.png" alt="" class="icon">
-							<small>Have any question? <br>Free</small>
-							<strong>+44 (0) 7380 608 698</strong>
-						</a>
+    <!-- Main Header-->
+    <header class="main-header header-style-two">
+      <!-- Header Lower -->
+      <div class="header-lower">
+        <!-- Main box -->
+        <div class="main-box">
+          <div class="logo-box">
+            <div class="logo"><a href="index.html"><img src="images/logo.png" alt=""></a></div>
+          </div>
 
-						<!-- Mobile Nav toggler -->
-						<div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
-					</div>
-				</div>
-			</div>
-			<!-- End Header Lower -->
+          <nav class="nav main-menu">
+            <ul class="navigation">
+              <li><a href="/">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="equipment.html">Equipment</a></li>
+              <li class="current"><a href="work.html">Our Work</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
 
-			<!-- Mobile Menu  -->
-			<div class="mobile-menu">
-				<div class="menu-backdrop"></div>
+          <!-- Main Menu End-->
+          <div class="outer-box">
+            <a href="tel:+44 (0) 7380 608 698" class="info-btn">
+              <img src="images/icons/icon-chat.png" alt="" class="icon">
+              <small>Have any question? <br>Free</small>
+              <strong>+44 (0) 7380 608 698</strong>
+            </a>
 
-				<!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-				<nav class="menu-box">
-					<div class="upper-box">
-						<div class="nav-logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
-						<div class="close-btn"><i class="icon fa fa-times"></i></div>
-					</div>
+            <!-- Mobile Nav toggler -->
+            <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+          </div>
+        </div>
+      </div>
+      <!-- End Header Lower -->
 
-					<ul class="navigation clearfix">
-						<!--Keep This Empty / Menu will come through Javascript-->
-					</ul>
-					<ul class="contact-list-one">
-						<li>
-							<!-- Contact Info Box -->
-							<div class="contact-info-box">
-								<i class="icon lnr-icon-phone-handset"></i>
-								<span class="title">Call Now</span>
-								<a href="tel:+92880098670" style="font-size: 13px;">+92 (8800) - 98670</a>
-							</div>
-						</li>
-						<li>
-							<!-- Contact Info Box -->
-							<div class="contact-info-box">
-								<span class="icon lnr-icon-envelope1"></span>
-								<span class="title">Send Email</span>
-								<a href="mailto:sales@bortrammediagroup.com"
-									style="font-size: 13px;">sales@bortrammediagroup.com</a>
-							</div>
-						</li>
-						<li>
-							<!-- Contact Info Box -->
-							<div class="contact-info-box">
-								<span class="icon lnr-icon-clock"></span>
-								<span class="title">Send Email</span>
-								Mon - Sat 8:00 - 6:30, Sunday - CLOSED
-							</div>
-						</li>
-					</ul>
+      <!-- Mobile Menu  -->
+      <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+
+        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+        <nav class="menu-box">
+          <div class="upper-box">
+            <div class="nav-logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+            <div class="close-btn"><i class="icon fa fa-times"></i></div>
+          </div>
+
+          <ul class="navigation clearfix">
+            <!--Keep This Empty / Menu will come through Javascript-->
+          </ul>
+          <ul class="contact-list-one">
+            <li>
+              <!-- Contact Info Box -->
+              <div class="contact-info-box">
+                <i class="icon lnr-icon-phone-handset"></i>
+                <span class="title">Call Now</span>
+                <a href="tel:+92 (8800) 98670" style="font-size: 13px;">+92 (8800) - 98670</a>
+              </div>
+            </li>
+            <li>
+              <!-- Contact Info Box -->
+              <div class="contact-info-box">
+                <span class="icon lnr-icon-envelope1"></span>
+                <span class="title">Send Email</span>
+                <a href="mailto:sales@bortrammediagroup.com" style="font-size: 13px;">sales@bortrammediagroup.com</a>
+              </div>
+            </li>
+            <li>
+              <!-- Contact Info Box -->
+              <div class="contact-info-box">
+                <span class="icon lnr-icon-clock"></span>
+                <span class="title">Working Hours</span>
+                Mon - Sat 8:00 - 6:30, Sunday - CLOSED
+              </div>
+            </li>
+          </ul>
+
+          <ul class="social-links">
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </nav>
+      </div><!-- End Mobile Menu -->
+
+      <!-- Header Search -->
+      <div class="search-popup">
+        <span class="search-back-drop"></span>
+        <button class="close-search"><span class="fa fa-times"></span></button>
+
+        <div class="search-inner">
+          <form method="post" action="news-grid.html">
+            <div class="form-group">
+              <input type="search" name="search-field" value="" placeholder="Search..." required="">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Header Search -->
+
+      <!-- Sticky Header  -->
+      <div class="sticky-header">
+        <div class="auto-container">
+          <div class="inner-container">
+            <!--Logo-->
+            <div class="logo">
+              <a href="index.html" title=""><img src="images/logo-2.png" alt="" title=""></a>
+            </div>
+
+            <!--Right Col-->
+            <div class="nav-outer">
+              <!-- Main Menu -->
+              <nav class="main-menu">
+                <div class="navbar-collapse show collapse clearfix">
+                  <ul class="navigation clearfix">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                  </ul>
+                </div>
+              </nav><!-- Main Menu End-->
+
+              <!--Mobile Navigation Toggler-->
+              <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Sticky Menu -->
+
+    </header>
+    <!--End Main Header -->
+
+    <!-- Start main-content -->
+    <section class="page-title" style="background-image: url(images/equipment.jpeg);">
+      <div class="auto-container">
+        <div class="title-outer">
+          <h1 class="title">Our Work</h1>
+          <ul class="page-breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li>Our Work</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- end main-content -->
+
+    <!-- Work Carousel -->
+    <section class="featured-products">
+      <div class="auto-container">
+        <!-- Custom navigation buttons -->
+        <div class="gallery-nav">
+          <div class="gallery-button-prev">←</div>
+          <div class="gallery-button-next">→</div>
+        </div>
+        <div class="swiper gallerySwiper">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="0">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/d7039ae8-4e9f-460c-9763-23b1308f3c1a/DJI_0171.JPG?format=750w"
+                      alt="Brookhaven House" />
+                  </div>
+                  <div class="content">
+                    <h4>Brookhaven House</h4>
+                    <span class="price">Bortram Luxury Homes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="1">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/73ff9486-492c-4226-88d6-74c59eb24ef5/DJI_0372.jpg?format=750w"
+                      alt="Peckmill House" />
+                  </div>
+                  <div class="content">
+                    <h4>Peckmill House</h4>
+                    <span class="price">Ingram Premium Listings</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="2">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/7865958d-f4ae-4c4a-bb8e-55cf056f2191/20240419-DJI_0267.jpg?format=750w"
+                      alt="Lake Vyrnwy" />
+                  </div>
+                  <div class="content">
+                    <h4>Lake Vyrnwy</h4>
+                    <span class="price">North Wales</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="3">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a3709842-97ba-4d62-ad59-17e3365b8329/20240424-DJI_0379.jpeg?format=750w"
+                      alt="Crosby Liverpool" />
+                  </div>
+                  <div class="content">
+                    <h4>Crosby Liverpool</h4>
+                    <span class="price">Candor Property's</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="4">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a42c6cc5-ea36-4eee-830b-b5fa1a9ba295/IMG_9769.jpeg?format=750w"
+                      alt="The Rhino" />
+                  </div>
+                  <div class="content">
+                    <h4>"The Rhino"</h4>
+                    <span class="price">Patagonia Xpedition Vehicle's</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="5">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/dc6534e1-f30d-41cc-9d51-07c75002d6d5/tempImagetduA0s.jpg?format=750w"
+                      alt="Farr Hall Drive" />
+                  </div>
+                  <div class="content">
+                    <h4>Farr Hall Drive</h4>
+                    <span class="price">Bortram Luxury Homes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="6">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/b3ee3cea-d363-42e3-a672-90b5ffb8220a/1+Main+Image.jpg?format=750w"
+                      alt="New Cottage House" />
+                  </div>
+                  <div class="content">
+                    <h4>New Cottage House</h4>
+                    <span class="price">Fine & Country Property</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="7">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/ea08265c-1943-47a5-9118-d78f51a4cede/RENEW+Automotive+Jpeg.JPG?format=750w"
+                      alt="Renew Automotive" />
+                  </div>
+                  <div class="content">
+                    <h4>Renew Automotive</h4>
+                    <span class="price">Marketing Campaign</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="8">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/3baf9dc5-0967-4fa1-af60-3d12dddee457/SELL+YOUR+CAR+TO+CALLUM.COM+-+Large.jpg?format=750w"
+                      alt="Sell Your Car 2 Callum" />
+                  </div>
+                  <div class="content">
+                    <h4>Sell Your Car 2 Callum</h4>
+                    <span class="price">Marketing Campaign</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="9">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/f929fd49-304e-4142-bc8f-80a842503c3f/22.jpg?format=750w"
+                      alt="Haulfryn House" />
+                  </div>
+                  <div class="content">
+                    <h4>Haulfryn House</h4>
+                    <span class="price">Candor Property's</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="10">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/017cca3c-399c-4338-aca1-22b1a1e51010/Screenshot+2024-04-30+at+01.05.23.jpg?format=750w"
+                      alt="Yacht Advertisement" />
+                  </div>
+                  <div class="content">
+                    <h4>Yacht Advertisement</h4>
+                    <span class="price">Bortram Marine</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="11">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/f96db0d7-e81b-45d1-9884-03cde0ffc87d/DJI_0465.jpg?format=500w"
+                      alt="Yacht Listing" />
+                  </div>
+                  <div class="content">
+                    <h4>Yacht Listing</h4>
+                    <span class="price">Bortram Marine</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="12">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/54f7a0c2-6ee6-40f2-945a-230048fb077b/20240601-DSC06054.jpeg?format=750w"
+                      alt="Yacht Photography" />
+                  </div>
+                  <div class="content">
+                    <h4>Yacht Photography</h4>
+                    <span class="price">Bortram Marine</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="13">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/233ccb00-487e-4ef3-802a-b12ba8f92e50/IMG_4451.jpg?format=500w"
+                      alt="LC Gardening Promo" />
+                  </div>
+                  <div class="content">
+                    <h4>Promo Video</h4>
+                    <span class="price">LC Gardening & Tree Services</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="14">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/3bbefe29-2150-46f7-ba5c-60bb55ea20d8/Screenshot+2024-05-22+at+16.50.54.png?format=1000w"
+                      alt="Hallmark Developments" />
+                  </div>
+                  <div class="content">
+                    <h4>Hallmark Developments</h4>
+                    <span class="price">Candor Property</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="15">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/c423a811-fab2-42b3-992a-a91c6c683845/20240521-DJI_0600.jpg?format=750w"
+                      alt="Heydon Close Formby" />
+                  </div>
+                  <div class="content">
+                    <h4>Heydon Close, Formby</h4>
+                    <span class="price">Candor Property</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="16">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/9a347291-b5f5-41a2-90cb-6274d61cad53/20240722-DJI_0649.jpg?format=750w"
+                      alt="Sandforth House" />
+                  </div>
+                  <div class="content">
+                    <h4>Sandforth House</h4>
+                    <span class="price">Candor Property</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="17">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/4414b1c7-5911-4412-a711-b8afa5ca7028/DJI_0656-Edit.jpg?format=750w"
+                      alt="Speed Boat Listing" />
+                  </div>
+                  <div class="content">
+                    <h4>Speed Boat Listing</h4>
+                    <span class="price">Bortram Marine</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="18">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/76f4fe07-8130-4523-903a-f93133322f0b/13.jpg?format=750w"
+                      alt="HDR Photography" />
+                  </div>
+                  <div class="content">
+                    <h4>HDR Photography</h4>
+                    <span class="price">Professional Photography</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="product-block" data-index="19">
+                <div class="inner-box">
+                  <div class="image">
+                    <img
+                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a8e9c1e8-717b-4f32-96a0-44f9db8ec4d2/DSC09101.jpg?format=750w"
+                      alt="Watson Planthire" />
+                  </div>
+                  <div class="content">
+                    <h4>Watson Planthire LTD</h4>
+                    <span class="price">Promo Video</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" aria-hidden="true">
+      <span class="close" aria-label="Close">&times;</span>
+      <div class="swiper modal-swiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/boMwk_RULT0?autoplay=1&mute=1&rel=0"
+              data-title="Brookhaven House"
+              data-description="Luxury property showcase by Bortram Luxury Homes featuring stunning architecture and premium finishes.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/XD_2YJvKwiI?autoplay=1&mute=1&rel=0"
+              data-title="Peckmill House"
+              data-description="Premium property listing showcase for Ingram Premium Listings with cinematic presentation.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/kIbHpqZ1NjE?autoplay=1&mute=1&rel=0"
+              data-title="Lake Vyrnwy - North Wales"
+              data-description="Breathtaking aerial showcase of Wales' stunning natural landscape captured with drone technology.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/k4X3Arf0LtI?autoplay=1&mute=1&rel=0"
+              data-title="Crosby Liverpool"
+              data-description="Property showcase for Candor Property's featuring modern residential development.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/tCOkb3iDK58?autoplay=1&mute=1&rel=0"
+              data-title="The Rhino - Patagonia Xpedition Vehicle's"
+              data-description="Adventure vehicle showcase highlighting rugged design and expedition capabilities.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/T7ubiuZTq74?autoplay=1&mute=1&rel=0"
+              data-title="Farr Hall Drive"
+              data-description="Luxury property presentation by Bortram Luxury Homes with detailed interior and exterior views.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/WnC1RaGb5tc?autoplay=1&mute=1&rel=0"
+              data-title="New Cottage House"
+              data-description="Fine & Country Property showcase featuring charming cottage design and premium location.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="Renew Automotive"
+              data-description="Marketing campaign for automotive services featuring dynamic visual presentation.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/qr8r-R_kSNU?autoplay=1&mute=1&rel=0"
+              data-title="Sell Your Car 2 Callum"
+              data-description="Dynamic marketing campaign video promoting automotive services with engaging visuals.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/2eqC80wZEPs?autoplay=1&mute=1&rel=0"
+              data-title="Haulfryn House"
+              data-description="Candor Property's showcase featuring modern residential property with premium amenities.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="Yacht Advertisement"
+              data-description="Professional yacht marketing content by Bortram Marine showcasing luxury maritime vessels.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="Yacht Listing"
+              data-description="Premium yacht listing presentation by Bortram Marine with detailed vessel showcase.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="Yacht Photography"
+              data-description="Professional yacht photography session capturing luxury vessels in stunning detail.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/Ud74CejrrYQ?autoplay=1&mute=1&rel=0"
+              data-title="LC Gardening & Tree Services"
+              data-description="Professional service promotional video highlighting expertise in landscaping and tree care.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="Hallmark Developments"
+              data-description="Development showcase for Candor Property featuring contemporary residential projects.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="Heydon Close, Formby"
+              data-description="Property showcase in Formby by Candor Property featuring premium residential development.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/hFJz5pZf4FE?autoplay=1&mute=1&rel=0"
+              data-title="Sandforth House"
+              data-description="Candor Property showcase featuring contemporary design and modern living spaces."></div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="Speed Boat Listing"
+              data-description="High-performance speedboat showcase by Bortram Marine featuring dynamic vessel presentation.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="#" data-title="HDR Photography"
+              data-description="Professional HDR photography showcase demonstrating advanced imaging techniques and stunning results.">
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="video-slide" data-src="https://www.youtube.com/embed/-r3H57yCCe4?autoplay=1&mute=1&rel=0"
+              data-title="Watson Planthire LTD"
+              data-description="Professional promotional video showcasing plant hire services and equipment capabilities.">
+            </div>
+          </div>
+
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!--Widgets Section-->
+      <div class="widgets-section">
+        <div class="auto-container">
+          <div class="row">
+            <!--Footer Column-->
+            <div class="footer-column col-xl-3 col-lg-12 col-md-12">
+              <div class="footer-widget about-widget">
+                <h6 class="widget-title">About</h6>
+                <div class="text">We provide high-quality content creation, web design & development,
+                  SEO optimisation, and drone photography & videography. </div>
+                <ul class="social-icon-two">
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Footer Column-->
+            <div class="footer-column col-xl-3 col-lg-4 col-md-4">
+              <div class="footer-widget links-widget">
+                <h6 class="widget-title">Explore</h6>
+                <ul class="user-links">
+                  <li><a href="/about.html">About</a></li>
+                  <li><a href="/services.html">Services</a></li>
+                  <li><a href="/equipment.html">Equipment</a></li>
+                  <li><a href="/work.html">Our Work</a></li>
+                  <li><a href="/contact.html">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="footer-column col-xl-3 col-lg-4 col-md-4"></div>
+
+            <!--Footer Column-->
+            <div class="footer-column col-xl-3 col-lg-4 col-md-4">
+              <div class="footer-widget contacts-widget">
+                <h6 class="widget-title">Contact</h6>
+                <ul class="contact-info">
+                  <li><i class="fa fa-envelope"></i> <a
+                      href="mailto:sales@bortrammediagroup.com">sales@bortrammediagroup.com</a><br>
+                  </li>
+                  <li><i class="fa fa-phone-square"></i> <a href="tel:+44 (0) 7380 608 698">+44 (0)
+                      7380 608 698</a><br></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Footer Bottom-->
+      <div class="footer-bottom">
+        <div class="auto-container">
+          <div class="inner-container">
+            <div class="copyright-text">&copy; Copyright 2025 <a href="/">Bortram Media Group</a> - Part of
+              Bortram Group</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--End Main Footer -->
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const gallerySwiper = new Swiper(".gallerySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      speed: 500,
+      navigation: {
+        nextEl: ".gallery-button-next",
+        prevEl: ".gallery-button-prev",
+      },
+      keyboard: { enabled: true },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
 
 
-					<ul class="social-links">
-						<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-						<li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-						<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-					</ul>
-				</nav>
-			</div><!-- End Mobile Menu -->
+    const modal = document.getElementById('videoModal');
+    const closeBtn = modal.querySelector('.close');
 
-			<!-- Header Search -->
-			<div class="search-popup">
-				<span class="search-back-drop"></span>
-				<button class="close-search"><span class="fa fa-times"></span></button>
+    const modalSwiper = new Swiper(".modal-swiper", {
+      speed: 500,
+      effect: "fade",
+      fadeEffect: { crossFade: true },
+      navigation: {
+        nextEl: ".modal-swiper .swiper-button-next",
+        prevEl: ".modal-swiper .swiper-button-prev",
+      },
+      on: {
+        slideChange: () => loadActiveVideo()
+      }
+    });
 
-				<div class="search-inner">
-					<form method="post" action="news-grid.html">
-						<div class="form-group">
-							<input type="search" name="search-field" value="" placeholder="Search..." required="">
-							<button type="submit"><i class="fa fa-search"></i></button>
-						</div>
-					</form>
-				</div>
-			</div>
-			<!-- End Header Search -->
+    function loadActiveVideo() {
+      const slides = document.querySelectorAll('.modal-swiper .video-slide');
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === modalSwiper.activeIndex);
+        if (idx === modalSwiper.activeIndex) {
+          if (!slide.querySelector('iframe')) {
+            const src = slide.getAttribute('data-src');
+            const title = slide.getAttribute('data-title');
+            const description = slide.getAttribute('data-description');
 
-			<!-- Sticky Header  -->
-			<div class="sticky-header">
-				<div class="auto-container">
-					<div class="inner-container">
-						<!--Logo-->
-						<div class="logo">
-							<a href="index.html" title=""><img src="images/logo-2.png" alt="" title=""></a>
-						</div>
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.src = src;
 
-						<!--Right Col-->
-						<div class="nav-outer">
-							<!-- Main Menu -->
-							<nav class="main-menu">
-								<div class="navbar-collapse show collapse clearfix">
-									<ul class="navigation clearfix">
-										<!--Keep This Empty / Menu will come through Javascript-->
-									</ul>
-								</div>
-							</nav><!-- Main Menu End-->
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'video-info';
+            infoDiv.innerHTML = `<div class="video-title">${title}</div><div class="video-description">${description}</div>`;
 
-							<!--Mobile Navigation Toggler-->
-							<div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
-						</div>
-					</div>
-				</div>
-			</div><!-- End Sticky Menu -->
+            slide.appendChild(iframe);
+            slide.appendChild(infoDiv);
+          }
+        } else {
+          slide.innerHTML = '';
+        }
+      });
+    }
 
-		</header>
-		<!--End Main Header -->
+    function openModalAt(index) {
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      modalSwiper.update();
+      modalSwiper.slideTo(index, 0, false);
+      loadActiveVideo();
+      document.body.style.overflow = 'hidden';
+    }
 
-		<!-- Start main-content -->
-		<section class="page-title" style="background-image: url(images/equipment.jpeg);">
-			<div class="auto-container">
-				<div class="title-outer">
-					<h1 class="title">Work</h1>
-					<ul class="page-breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="#">Pages</a></li>
-						<li>Equipment</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-		<!-- end main-content -->
+    function closeModal() {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      document.querySelectorAll('.modal-swiper .video-slide').forEach(slide => slide.innerHTML = '');
+      document.body.style.overflow = '';
+    }
 
+    document.querySelectorAll('.product-block').forEach(card => {
+      card.addEventListener('click', () => {
+        const index = parseInt(card.dataset.index, 10) || 0;
+        openModalAt(index);
+      });
+    });
 
-		<!-- Featured Products -->
-		<section class="featured-products">
-			<span class="bg-shape"></span>
-
-			<div class="auto-container">
-
-				<!--MixitUp Galery-->
-				<div class="mixitup-gallery">
-					<!--Filter-->
-					<div class="filters clearfix">
-						<ul class="filter-tabs filter-btns clearfix">
-							<li class="active filter" data-role="button" data-filter="all">All</li>
-							<li class="filter" data-role="button" data-filter=".dairy">Cyber</li>
-							<li class="filter" data-role="button" data-filter=".pantry">Digital</li>
-							<li class="filter" data-role="button" data-filter=".meat">Software</li>
-							<li class="filter" data-role="button" data-filter=".fruit">Technology</li>
-							<li class="filter" data-role="button" data-filter=".vagetables">Development</li>
-						</ul>
-					</div>
-
-					<div class="filter-list row">
-						<!--Product Block-->
-						<div class="product-block all mix pantry fruit col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Graphic Card</a></h4>
-									<span class="price">$32.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<!--Product Block-->
-						<div class="product-block all mix dairy meat fruit col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Keyboard</a></h4>
-									<span class="price">$52.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<!--Product Block-->
-						<div class="product-block all mix pantry fruit vagetables col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Mouse</a></h4>
-									<span class="price">$42.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<!--Product Block-->
-						<div class="product-block all mix dairy meat vagetables col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Motherboard</a></h4>
-									<span class="price">$22.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<!--Product Block-->
-						<div class="product-block all mix pantry meat fruit col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Screen Protector</a></h4>
-									<span class="price">$34.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<!--Product Block-->
-						<div class="product-block all mix dairy pantry col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Memory Card</a></h4>
-									<span class="price">$25.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<!--Product Block-->
-						<div class="product-block all mix fruit vagetables col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Computer Ram</a></h4>
-									<span class="price">$20.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<!--Product Block-->
-						<div class="product-block all mix dairy pantry meat vagetables col-lg-3 col-md-6 col-sm-12">
-							<div class="inner-box">
-								<div class="image"><a href="shop-product-details.html"><img
-											src="https://placehold.co/600x600" alt="" /></a></div>
-								<div class="content">
-									<h4><a href="shop-product-details.html">Degital Camera</a></h4>
-									<span class="price">$40.00</span>
-									<span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i><i class="fa fa-star"></i><i
-											class="fa fa-star"></i></span>
-								</div>
-								<div class="icon-box">
-									<a href="shop-product-details.html" class="ui-btn like-btn"><i
-											class="fa fa-heart"></i></a>
-									<a href="shop-cart.html" class="ui-btn add-to-cart"><i
-											class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Featured Products -->
-
-
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<!--Widgets Section-->
-			<div class="widgets-section">
-				<div class="auto-container">
-					<div class="row">
-						<!--Footer Column-->
-						<div class="footer-column col-xl-3 col-lg-12 col-md-12">
-							<div class="footer-widget about-widget">
-								<h6 class="widget-title">About</h6>
-								<div class="text">We provide high-quality content creation, web design & development,
-									SEO optimisation, and drone photography & videography. </div>
-								<ul class="social-icon-two">
-									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fab fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-									<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-								</ul>
-							</div>
-						</div>
-
-						<!--Footer Column-->
-						<div class="footer-column col-xl-3 col-lg-4 col-md-4">
-							<div class="footer-widget links-widget">
-								<h6 class="widget-title">Explore</h6>
-								<ul class="user-links">
-									<li><a href="/about.html">About</a></li>
-									<li><a href="/services.html">Services</a></li>
-									<li><a href="/equipment.html">Equipment</a></li>
-									<li><a href="/work.html">Our Work</a></li>
-									<li><a href="/contact.html">Contact</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="footer-column col-xl-3 col-lg-4 col-md-4"></div>
-
-						<!--Footer Column-->
-						<div class="footer-column col-xl-3 col-lg-4 col-md-4">
-							<div class="footer-widget contacts-widget">
-								<h6 class="widget-title">Contact</h6>
-								<ul class="contact-info">
-									<li><i class="fa fa-envelope"></i> <a
-											href="mailto:sales@bortrammediagroup.com">sales@bortrammediagroup.com</a><br>
-									</li>
-									<li><i class="fa fa-phone-square"></i> <a href="tel:+44 (0) 7380 608 698">+44 (0)
-											7380 608 698</a><br></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!--Footer Bottom-->
-			<div class="footer-bottom">
-				<div class="auto-container">
-					<div class="inner-container">
-						<div class="copyright-text">&copy; Copyright 2025 <a href="/">Bortram Media Group</a> - Part of
-							Bortram Group</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-		<!--End Main Footer -->
-
-	</div><!-- End Page Wrapper -->
-
-
-	<!-- Scroll To Top -->
-	<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
-
-
-	<script src="js/jquery.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.fancybox.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/jquery.countdown.js"></script>
-	<script src="js/mixitup.js"></script>
-	<script src="js/wow.js"></script>
-	<script src="js/appear.js"></script>
-	<script src="js/select2.min.js"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="js/owl.js"></script>
-	<script src="js/script.js"></script>
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    window.addEventListener('keydown', (e) => {
+      if (modal.style.display === 'flex') {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') modalSwiper.slideNext();
+        if (e.key === 'ArrowLeft') modalSwiper.slidePrev();
+      }
+    });
+  </script>
 </body>
 
 </html>
