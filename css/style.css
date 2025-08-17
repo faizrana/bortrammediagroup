@@ -852,6 +852,7 @@ li {
   z-index: 999999;
   background-color: #ffffff;
 }
+
 .preloader:after {
   content: "";
   position: absolute;
@@ -868,7 +869,9 @@ li {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .preloader:before {
@@ -16345,6 +16348,7 @@ Sidebar
   width: 100%;
   display: flex;
 }
+
 .product-block img {
   height: 250px;
   width: 100%;
