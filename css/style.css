@@ -4673,7 +4673,7 @@ Section Title
   content: "";
 }
 
-.feature-block-two .inner-box:hover .image img {
+.feature-block-two .inner-box:hover .image img, .marquee__item {
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
 }
@@ -16354,4 +16354,9 @@ Sidebar
   width: 100%;
   object-fit: cover;
   flex: 1;
+}
+
+
+.marquee {
+  align-items: center;
 }

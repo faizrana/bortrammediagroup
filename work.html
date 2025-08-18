@@ -90,7 +90,8 @@
     .media-content {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      padding-bottom: 56.25%;
+      /* 16:9 aspect ratio */
       height: 0;
       overflow: hidden;
       background: #000;
@@ -211,20 +212,20 @@
       .media-modal {
         padding: 10px;
       }
-      
+
       .media-swiper {
         max-width: 100%;
         max-height: 95vh;
       }
-      
+
       .media-info {
         padding: 15px;
       }
-      
+
       .media-title {
         font-size: 1.2rem;
       }
-      
+
       .media-description {
         font-size: 0.9rem;
       }
@@ -243,6 +244,7 @@
           <div class="logo-box">
             <div class="logo"><a href="index.html"><img src="images/logo.png" alt=""></a></div>
           </div>
+
 
           <nav class="nav main-menu">
             <ul class="navigation">
@@ -269,6 +271,101 @@
         </div>
       </div>
       <!-- End Header Lower -->
+
+      <!-- Mobile Menu  -->
+      <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+
+        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+        <nav class="menu-box">
+          <div class="upper-box">
+            <div class="nav-logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+            <div class="close-btn"><i class="icon fa fa-times"></i></div>
+          </div>
+
+          <ul class="navigation clearfix">
+            <!--Keep This Empty / Menu will come through Javascript-->
+          </ul>
+          <ul class="contact-list-one">
+            <li>
+              <!-- Contact Info Box -->
+              <div class="contact-info-box">
+                <i class="icon lnr-icon-phone-handset"></i>
+                <span class="title">Call Now</span>
+                <a href="tel:+44 (0) 7380 608 698" style="font-size: 13px;">+44 (0) 7380 608 698</a>
+              </div>
+            </li>
+            <li>
+              <!-- Contact Info Box -->
+              <div class="contact-info-box">
+                <span class="icon lnr-icon-envelope1"></span>
+                <span class="title">Send Email</span>
+                <a href="mailto:sales@bortrammediagroup.com" style="font-size: 13px;">sales@bortrammediagroup.com</a>
+              </div>
+            </li>
+            <li>
+              <!-- Contact Info Box -->
+              <div class="contact-info-box">
+                <span class="icon lnr-icon-clock"></span>
+                <span class="title">Send Email</span>
+                Mon - Sat 8:00 - 6:30, Sunday - CLOSED
+              </div>
+            </li>
+          </ul>
+
+
+          <ul class="social-links">
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </nav>
+      </div><!-- End Mobile Menu -->
+
+      <!-- Header Search -->
+      <div class="search-popup">
+        <span class="search-back-drop"></span>
+        <button class="close-search"><span class="fa fa-times"></span></button>
+
+        <div class="search-inner">
+          <form method="post" action="news-grid.html">
+            <div class="form-group">
+              <input type="search" name="search-field" value="" placeholder="Search..." required="">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Header Search -->
+
+      <!-- Sticky Header  -->
+      <div class="sticky-header">
+        <div class="auto-container">
+          <div class="inner-container">
+            <!--Logo-->
+            <div class="logo">
+              <a href="index.html" title=""><img src="images/logo-2.png" alt="" title=""></a>
+            </div>
+
+            <!--Right Col-->
+            <div class="nav-outer">
+              <!-- Main Menu -->
+              <nav class="main-menu">
+                <div class="navbar-collapse show collapse clearfix">
+                  <ul class="navigation clearfix">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                  </ul>
+                </div>
+              </nav><!-- Main Menu End-->
+
+              <!--Mobile Navigation Toggler-->
+              <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Sticky Menu -->
+
     </header>
     <!--End Main Header -->
 
@@ -856,13 +953,13 @@
     function createMediaSlide(data, index) {
       const slide = document.createElement('div');
       slide.className = 'swiper-slide';
-      
+
       const mediaSlide = document.createElement('div');
       mediaSlide.className = 'media-slide';
-      
+
       const mediaContent = document.createElement('div');
       mediaContent.className = 'media-content';
-      
+
       if (data.src) {
         // Video content
         const iframe = document.createElement('iframe');
@@ -877,36 +974,36 @@
         img.alt = data.title;
         mediaContent.appendChild(img);
       }
-      
+
       const mediaInfo = document.createElement('div');
       mediaInfo.className = 'media-info';
       mediaInfo.innerHTML = `
         <div class="media-title">${data.title}</div>
         <div class="media-description">${data.description}</div>
       `;
-      
+
       mediaSlide.appendChild(mediaContent);
       mediaSlide.appendChild(mediaInfo);
       slide.appendChild(mediaSlide);
-      
+
       return slide;
     }
 
     function initializeModal() {
       // Clear existing slides
       mediaWrapper.innerHTML = '';
-      
+
       // Create all slides
       mediaData.forEach((data, index) => {
         const slide = createMediaSlide(data, index);
         mediaWrapper.appendChild(slide);
       });
-      
+
       // Initialize or update swiper
       if (mediaSwiper) {
         mediaSwiper.destroy(true, true);
       }
-      
+
       mediaSwiper = new Swiper(".media-swiper", {
         speed: 500,
         effect: "slide",
@@ -934,7 +1031,7 @@
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      
+
       // Stop all videos
       const iframes = modal.querySelectorAll('iframe');
       iframes.forEach(iframe => {
@@ -953,11 +1050,11 @@
     });
 
     closeBtn.addEventListener('click', closeModal);
-    
-    window.addEventListener('click', (e) => { 
-      if (e.target === modal) closeModal(); 
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
     });
-    
+
     window.addEventListener('keydown', (e) => {
       if (modal.classList.contains('active')) {
         if (e.key === 'Escape') closeModal();
