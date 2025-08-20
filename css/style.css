@@ -4673,7 +4673,8 @@ Section Title
   content: "";
 }
 
-.feature-block-two .inner-box:hover .image img, .marquee__item {
+.feature-block-two .inner-box:hover .image img,
+.marquee__item {
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
 }
@@ -16359,4 +16360,9 @@ Sidebar
 
 .marquee {
   align-items: center;
+}
+
+.project-block .image-box .image img {
+  height: 400px;
+  object-fit: cover;
 }
