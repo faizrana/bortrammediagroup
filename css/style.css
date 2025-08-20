@@ -16264,3 +16264,11 @@ Sidebar
   height: 400px;
   object-fit: cover;
 }
+
+.icon {
+  flex-shrink: 0;
+}
+
+.contact-info-title {
+  white-space: nowrap;
+}
