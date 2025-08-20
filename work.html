@@ -3,238 +3,87 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Our Work</title>
+  <title>Our Work - Bortram Media Group</title>
+  <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+  <!-- Responsive -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+  <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  
   <style>
-    /* Gallery swiper arrows */
-    .featured-products .swiper-button-next,
-    .featured-products .swiper-button-prev {
-      color: #000;
-    }
-
-    .product-block .inner-box {
-      cursor: pointer;
-    }
-
-    /* Modal backdrop - Fixed positioning and display */
-    .media-modal {
+    /* Custom Lightbox Styles */
+    .custom-lightbox {
       display: none;
       position: fixed;
-      top: 0;
+      z-index: 10000;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      overflow: auto;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .media-modal.active {
-      display: flex;
-    }
-
-    /* Close button */
-    .media-modal .close {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      font-size: 40px;
-      color: #fff;
-      cursor: pointer;
-      line-height: 1;
-      user-select: none;
-      z-index: 10001;
-      transition: transform .15s ease;
-      background: none;
-      border: none;
-    }
-
-    .media-modal .close:hover {
-      transform: scale(1.1);
-      color: #ff4444;
-    }
-
-    /* Modal swiper container - Fixed sizing */
-    .media-swiper {
-      width: 100%;
-      max-width: 1200px;
-      height: auto;
-      max-height: 90vh;
-      background: #000;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-      position: relative;
-    }
-
-    /* Media slide container */
-    .media-slide {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 400px;
-      background: #000;
-      width: 100%;
-    }
-
-    /* Media content wrapper for proper aspect ratio */
-    .media-content {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      background: #000;
-    }
-
-    /* Media elements positioning */
-    .media-content iframe,
-    .media-content img {
-      position: absolute;
       top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      border: none;
+      background-color: rgba(0, 0, 0, 0.9);
     }
-
-    /* Media info styling */
-    .media-info {
-      padding: 20px;
-      background: #111;
-      color: #fff;
-      text-align: left;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .media-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #fff;
-    }
-
-    .media-description {
-      font-size: 1rem;
-      color: #ccc;
-      line-height: 1.4;
-    }
-
-    /* Modal swiper navigation */
-    .media-swiper .swiper-button-next,
-    .media-swiper .swiper-button-prev {
-      color: #fff;
-      background: rgba(0, 0, 0, 0.5);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-top: -25px;
-    }
-
-    .media-swiper .swiper-button-next:after,
-    .media-swiper .swiper-button-prev:after {
-      font-size: 18px;
-    }
-
-    .media-swiper .swiper-button-next:hover,
-    .media-swiper .swiper-button-prev:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Gallery card hover zoom */
-    .product-block .inner-box .image img {
-      transition: transform .3s ease;
-    }
-
-    .product-block .inner-box:hover .image img {
-      transform: scale(1.03);
-    }
-
-    .gallery-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .gallery-button-prev,
-    .gallery-button-next {
-      cursor: pointer;
-      font-size: 28px;
-      height: 60px;
-      width: 60px;
-      display: flex;
-      background: #000;
-      color: #fff;
-      border-radius: 50%;
-      transition: background 0.3s ease;
+    
+    .custom-lightbox-content {
       position: relative;
-      justify-content: center;
-      align-items: center;
-      opacity: 0.7;
+      margin: auto;
+      padding: 0;
+      width: 90%;
+      max-width: 900px;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
     }
-
-    .gallery-button-prev.swiper-button-disabled,
-    .gallery-button-next.swiper-button-disabled {
-      opacity: 0.3;
-      pointer-events: none;
+    
+    .custom-lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
     }
-
-    .gallery-button-prev {
-      left: -100px;
-      top: 215px;
+    
+    .custom-lightbox-content iframe {
+      width: 100%;
+      height: 500px;
+      max-height: 80vh;
     }
-
-    .gallery-button-next {
-      left: 100px;
-      top: 215px;
-    }
-
-    .gallery-button-prev:hover,
-    .gallery-button-next:hover {
-      opacity: 1;
-    }
-
-    /* Responsive design */
+    
     @media (max-width: 768px) {
-      .media-modal {
-        padding: 10px;
+      .custom-lightbox-content iframe {
+        height: 300px;
       }
-
-      .media-swiper {
-        max-width: 100%;
-        max-height: 95vh;
-      }
-
-      .media-info {
-        padding: 15px;
-      }
-
-      .media-title {
-        font-size: 1.2rem;
-      }
-
-      .media-description {
-        font-size: 0.9rem;
-      }
+    }
+    
+    .custom-lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10001;
+    }
+    
+    .custom-lightbox-close:hover {
+      color: #ccc;
     }
   </style>
 </head>
 
 <body>
+
   <div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
     <!-- Main Header-->
     <header class="main-header header-style-two">
       <!-- Header Lower -->
@@ -369,13 +218,14 @@
     </header>
     <!--End Main Header -->
 
+
     <!-- Start main-content -->
-    <section class="page-title" style="background-image: url(images/equipment.jpeg);">
+    <section class="page-title" style="background-image: url(images/main-slider/1.jpg);">
       <div class="auto-container">
         <div class="title-outer">
           <h1 class="title">Our Work</h1>
           <ul class="page-breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#">Pages</a></li>
             <li>Our Work</li>
           </ul>
@@ -384,356 +234,132 @@
     </section>
     <!-- end main-content -->
 
-    <!-- Work Carousel -->
-    <section class="featured-products">
+
+    <!-- Project Section -->
+    <section class="project-section">
       <div class="auto-container">
-        <!-- Custom navigation buttons -->
-        <div class="gallery-nav">
-          <div class="gallery-button-prev">←</div>
-          <div class="gallery-button-next">→</div>
-        </div>
-        <div class="swiper gallerySwiper">
-          <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-              <div class="product-block" data-index="0">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/d7039ae8-4e9f-460c-9763-23b1308f3c1a/DJI_0171.JPG?format=750w"
-                      alt="Brookhaven House" />
+        <div class="carousel-outer">
+          <!-- Swiper -->
+          <div class="swiper project-slider">
+            <div class="swiper-wrapper">
+
+              <div class="swiper-slide">
+                <!-- Project Block -->
+                <div class="project-block">
+                  <div class="inner-box">
+                    <div class="image-box">
+                      <figure class="image"><a href="https://placehold.co/370x536" class="custom-lightbox-trigger" data-type="image"><img
+                            src="https://placehold.co/370x536" alt=""></a></figure>
+                    </div>
+                    <div class="content-box">
+                      <span class="cat">Marketing</span>
+                      <h4 class="title"><a href="page-project-details.html">Tech Website <br>Solution</a></h4>
+                    </div>
                   </div>
-                  <div class="content">
-                    <h4>Brookhaven House</h4>
-                    <span class="price">Bortram Luxury Homes</span>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <!-- Project Block -->
+                <div class="project-block">
+                  <div class="inner-box">
+                    <div class="image-box">
+                      <figure class="image"><a href="https://www.youtube.com/embed/dQw4w9WgXcQ" class="custom-lightbox-trigger" data-type="youtube"><img
+                            src="https://placehold.co/370x536" alt=""></a></figure>
+                    </div>
+                    <div class="content-box">
+                      <span class="cat">Marketing</span>
+                      <h4 class="title"><a href="page-project-details.html">App Platform <br>Integration</a></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <!-- Project Block -->
+                <div class="project-block">
+                  <div class="inner-box">
+                    <div class="image-box">
+                      <figure class="image"><a href="https://www.youtube.com/embed/jNQXAC9IVRw" class="custom-lightbox-trigger" data-type="youtube"><img
+                            src="https://placehold.co/370x536" alt=""></a></figure>
+                    </div>
+                    <div class="content-box">
+                      <span class="cat">Marketing</span>
+                      <h4 class="title"><a href="page-project-details.html">Software Tools <br>Development</a></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <!-- Project Block -->
+                <div class="project-block">
+                  <div class="inner-box">
+                    <div class="image-box">
+                      <figure class="image"><a href="https://placehold.co/370x536" class="custom-lightbox-trigger" data-type="image"><img
+                            src="https://placehold.co/370x536" alt=""></a></figure>
+                    </div>
+                    <div class="content-box">
+                      <span class="cat">Marketing</span>
+                      <h4 class="title"><a href="page-project-details.html">Tech Website <br>Solution</a></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <!-- Project Block -->
+                <div class="project-block">
+                  <div class="inner-box">
+                    <div class="image-box">
+                      <figure class="image"><a href="https://www.youtube.com/embed/M7lc1UVf-VE" class="custom-lightbox-trigger" data-type="youtube"><img
+                            src="https://placehold.co/370x536" alt=""></a></figure>
+                    </div>
+                    <div class="content-box">
+                      <span class="cat">Marketing</span>
+                      <h4 class="title"><a href="page-project-details.html">Tech Website <br>Solution</a></h4>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="swiper-slide">
-              <div class="product-block" data-index="1">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/73ff9486-492c-4226-88d6-74c59eb24ef5/DJI_0372.jpg?format=750w"
-                      alt="Peckmill House" />
-                  </div>
-                  <div class="content">
-                    <h4>Peckmill House</h4>
-                    <span class="price">Ingram Premium Listings</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="2">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/7865958d-f4ae-4c4a-bb8e-55cf056f2191/20240419-DJI_0267.jpg?format=750w"
-                      alt="Lake Vyrnwy" />
-                  </div>
-                  <div class="content">
-                    <h4>Lake Vyrnwy</h4>
-                    <span class="price">North Wales</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="3">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a3709842-97ba-4d62-ad59-17e3365b8329/20240424-DJI_0379.jpeg?format=750w"
-                      alt="Crosby Liverpool" />
-                  </div>
-                  <div class="content">
-                    <h4>Crosby Liverpool</h4>
-                    <span class="price">Candor Property's</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="4">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a42c6cc5-ea36-4eee-830b-b5fa1a9ba295/IMG_9769.jpeg?format=750w"
-                      alt="The Rhino" />
-                  </div>
-                  <div class="content">
-                    <h4>"The Rhino"</h4>
-                    <span class="price">Patagonia Xpedition Vehicle's</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="5">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/dc6534e1-f30d-41cc-9d51-07c75002d6d5/tempImagetduA0s.jpg?format=750w"
-                      alt="Farr Hall Drive" />
-                  </div>
-                  <div class="content">
-                    <h4>Farr Hall Drive</h4>
-                    <span class="price">Bortram Luxury Homes</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="6">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/b3ee3cea-d363-42e3-a672-90b5ffb8220a/1+Main+Image.jpg?format=750w"
-                      alt="New Cottage House" />
-                  </div>
-                  <div class="content">
-                    <h4>New Cottage House</h4>
-                    <span class="price">Fine & Country Property</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="7">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/ea08265c-1943-47a5-9118-d78f51a4cede/RENEW+Automotive+Jpeg.JPG?format=750w"
-                      alt="Renew Automotive" />
-                  </div>
-                  <div class="content">
-                    <h4>Renew Automotive</h4>
-                    <span class="price">Marketing Campaign</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="8">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/3baf9dc5-0967-4fa1-af60-3d12dddee457/SELL+YOUR+CAR+TO+CALLUM.COM+-+Large.jpg?format=750w"
-                      alt="Sell Your Car 2 Callum" />
-                  </div>
-                  <div class="content">
-                    <h4>Sell Your Car 2 Callum</h4>
-                    <span class="price">Marketing Campaign</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="9">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/f929fd49-304e-4142-bc8f-80a842503c3f/22.jpg?format=750w"
-                      alt="Haulfryn House" />
-                  </div>
-                  <div class="content">
-                    <h4>Haulfryn House</h4>
-                    <span class="price">Candor Property's</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="10">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/017cca3c-399c-4338-aca1-22b1a1e51010/Screenshot+2024-04-30+at+01.05.23.jpg?format=750w"
-                      alt="Yacht Advertisement" />
-                  </div>
-                  <div class="content">
-                    <h4>Yacht Advertisement</h4>
-                    <span class="price">Bortram Marine</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="11">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/f96db0d7-e81b-45d1-9884-03cde0ffc87d/DJI_0465.jpg?format=500w"
-                      alt="Yacht Listing" />
-                  </div>
-                  <div class="content">
-                    <h4>Yacht Listing</h4>
-                    <span class="price">Bortram Marine</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="12">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/54f7a0c2-6ee6-40f2-945a-230048fb077b/20240601-DSC06054.jpeg?format=750w"
-                      alt="Yacht Photography" />
-                  </div>
-                  <div class="content">
-                    <h4>Yacht Photography</h4>
-                    <span class="price">Bortram Marine</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="13">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/233ccb00-487e-4ef3-802a-b12ba8f92e50/IMG_4451.jpg?format=500w"
-                      alt="LC Gardening Promo" />
-                  </div>
-                  <div class="content">
-                    <h4>Promo Video</h4>
-                    <span class="price">LC Gardening & Tree Services</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="14">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/3bbefe29-2150-46f7-ba5c-60bb55ea20d8/Screenshot+2024-05-22+at+16.50.54.png?format=1000w"
-                      alt="Hallmark Developments" />
-                  </div>
-                  <div class="content">
-                    <h4>Hallmark Developments</h4>
-                    <span class="price">Candor Property</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="15">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/c423a811-fab2-42b3-992a-a91c6c683845/20240521-DJI_0600.jpg?format=750w"
-                      alt="Heydon Close Formby" />
-                  </div>
-                  <div class="content">
-                    <h4>Heydon Close, Formby</h4>
-                    <span class="price">Candor Property</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="16">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/9a347291-b5f5-41a2-90cb-6274d61cad53/20240722-DJI_0649.jpg?format=750w"
-                      alt="Sandforth House" />
-                  </div>
-                  <div class="content">
-                    <h4>Sandforth House</h4>
-                    <span class="price">Candor Property</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="17">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/4414b1c7-5911-4412-a711-b8afa5ca7028/DJI_0656-Edit.jpg?format=750w"
-                      alt="Speed Boat Listing" />
-                  </div>
-                  <div class="content">
-                    <h4>Speed Boat Listing</h4>
-                    <span class="price">Bortram Marine</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="18">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/76f4fe07-8130-4523-903a-f93133322f0b/13.jpg?format=750w"
-                      alt="HDR Photography" />
-                  </div>
-                  <div class="content">
-                    <h4>HDR Photography</h4>
-                    <span class="price">Professional Photography</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="product-block" data-index="19">
-                <div class="inner-box">
-                  <div class="image">
-                    <img
-                      src="https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a8e9c1e8-717b-4f32-96a0-44f9db8ec4d2/DSC09101.jpg?format=750w"
-                      alt="Watson Planthire" />
-                  </div>
-                  <div class="content">
-                    <h4>Watson Planthire LTD</h4>
-                    <span class="price">Promo Video</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <div class="swiper-pagination styled-pagination"></div>
           </div>
         </div>
       </div>
     </section>
+    <!--End Project Section -->
 
-    <!-- Media Modal (handles both videos and images) -->
-    <div class="media-modal" id="mediaModal" aria-hidden="true">
-      <button class="close" aria-label="Close">&times;</button>
-      <div class="swiper media-swiper">
-        <div class="swiper-wrapper" id="mediaWrapper">
-          <!-- Slides will be populated by JavaScript -->
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+    <!-- Custom Lightbox Modal -->
+    <div id="customLightbox" class="custom-lightbox">
+      <div class="custom-lightbox-content">
+        <span class="custom-lightbox-close">&times;</span>
+        <div id="lightboxMedia"></div>
       </div>
     </div>
 
-    <!-- Main Footer -->
+    <!-- End Gallery Section --> <!-- Main Footer -->
     <footer class="main-footer">
+      <div class="bg-logo"></div>
+      <div class="auto-container">
+        <div class="subscribe-form">
+          <div class="title-column">
+            <div class="logo-box"><img src="images/resource/logo.png" alt=""></div>
+            <h5 class="title">Subscribe now to Get <br>Latest Updates</h5>
+          </div>
+          <div class="form-column">
+            <form method="post" action="#">
+              <div class="form-group">
+                <input type="email" name="email" class="email" value="" placeholder="Email Address" required="">
+                <button type="button" class="theme-btn"><i class="fa fa-paper-plane"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <!--Widgets Section-->
       <div class="widgets-section">
         <div class="auto-container">
@@ -742,8 +368,8 @@
             <div class="footer-column col-xl-3 col-lg-12 col-md-12">
               <div class="footer-widget about-widget">
                 <h6 class="widget-title">About</h6>
-                <div class="text">We provide high-quality content creation, web design & development,
-                  SEO optimisation, and drone photography & videography. </div>
+                <div class="text">Lorem ipsum dolor sit amet, consect etur adi pisicing elit sed do eiusmod tempor
+                  incididunt ut labore.</div>
                 <ul class="social-icon-two">
                   <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                   <li><a href="#"><i class="fab fa-facebook"></i></a></li>
@@ -758,27 +384,53 @@
               <div class="footer-widget links-widget">
                 <h6 class="widget-title">Explore</h6>
                 <ul class="user-links">
-                  <li><a href="/about.html">About</a></li>
-                  <li><a href="/services.html">Services</a></li>
-                  <li><a href="/equipment.html">Equipment</a></li>
-                  <li><a href="/work.html">Our Work</a></li>
-                  <li><a href="/contact.html">Contact</a></li>
+                  <li><a href="#">About Company</a></li>
+                  <li><a href="#">Meet the Team</a></li>
+                  <li><a href="#">News & Media</a></li>
+                  <li><a href="#">Our Projects</a></li>
+                  <li><a href="#">Contact</a></li>
                 </ul>
               </div>
             </div>
 
-            <div class="footer-column col-xl-3 col-lg-4 col-md-4"></div>
+            <!--Footer Column-->
+            <div class="footer-column col-xl-3 col-lg-4 col-md-4 col-sm-8">
+              <div class="footer-widget gallery-widget">
+                <h6 class="widget-title">Portfolio</h6>
+                <div class="widget-content">
+                  <div class="outer clearfix">
+                    <figure class="image">
+                      <a href="#"><img src="https://placehold.co/80x75" alt=""></a>
+                    </figure>
+                    <figure class="image">
+                      <a href="#"><img src="https://placehold.co/80x75" alt=""></a>
+                    </figure>
+                    <figure class="image">
+                      <a href="#"><img src="https://placehold.co/80x75" alt=""></a>
+                    </figure>
+                    <figure class="image">
+                      <a href="#"><img src="https://placehold.co/80x75" alt=""></a>
+                    </figure>
+                    <figure class="image">
+                      <a href="#"><img src="https://placehold.co/80x75" alt=""></a>
+                    </figure>
+                    <figure class="image">
+                      <a href="#"><img src="https://placehold.co/80x75" alt=""></a>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!--Footer Column-->
             <div class="footer-column col-xl-3 col-lg-4 col-md-4">
               <div class="footer-widget contacts-widget">
                 <h6 class="widget-title">Contact</h6>
+                <div class="text">66 Road Broklyn Street, 600<br> New York, USA</div>
                 <ul class="contact-info">
-                  <li><i class="fa fa-envelope"></i> <a
-                      href="mailto:sales@bortrammediagroup.com">sales@bortrammediagroup.com</a><br>
+                  <li><i class="fa fa-envelope"></i> <a href="mailto:needhelp@potisen.com">needhelp@company.com</a><br>
                   </li>
-                  <li><i class="fa fa-phone-square"></i> <a href="tel:+44 (0) 7380 608 698">+44 (0)
-                      7380 608 698</a><br></li>
+                  <li><i class="fa fa-phone-square"></i> <a href="tel:+926668880000">+92 666 888 0000</a><br></li>
                 </ul>
               </div>
             </div>
@@ -790,277 +442,98 @@
       <div class="footer-bottom">
         <div class="auto-container">
           <div class="inner-container">
-            <div class="copyright-text">&copy; Copyright 2025 <a href="/">Bortram Media Group</a> - Part of
-              Bortram Group</div>
+            <div class="copyright-text">&copy; Copyright 2023 by <a href="index.html">Company.com</a></div>
           </div>
         </div>
       </div>
     </footer>
     <!--End Main Footer -->
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </div><!-- End Page Wrapper -->
+
+
+  <!-- Scroll To Top -->
+  <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+
+
+  <script src="js/jquery.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.fancybox.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/wow.js"></script>
+  <script src="js/appear.js"></script>
+  <script src="js/select2.min.js"></script>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/owl.js"></script>
+  <script src="js/script.js"></script>
+
   <script>
-    // Media data array
-    const mediaData = [
-      {
-        src: "https://www.youtube.com/embed/boMwk_RULT0?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/d7039ae8-4e9f-460c-9763-23b1308f3c1a/DJI_0171.JPG?format=750w",
-        title: "Brookhaven House",
-        description: "Luxury property showcase by Bortram Luxury Homes featuring stunning architecture and premium finishes."
-      },
-      {
-        src: "https://www.youtube.com/embed/XD_2YJvKwiI?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/73ff9486-492c-4226-88d6-74c59eb24ef5/DJI_0372.jpg?format=750w",
-        title: "Peckmill House",
-        description: "Premium property listing showcase for Ingram Premium Listings with cinematic presentation."
-      },
-      {
-        src: "https://www.youtube.com/embed/kIbHpqZ1NjE?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/7865958d-f4ae-4c4a-bb8e-55cf056f2191/20240419-DJI_0267.jpg?format=750w",
-        title: "Lake Vyrnwy - North Wales",
-        description: "Breathtaking aerial showcase of Wales' stunning natural landscape captured with drone technology."
-      },
-      {
-        src: "https://www.youtube.com/embed/k4X3Arf0LtI?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a3709842-97ba-4d62-ad59-17e3365b8329/20240424-DJI_0379.jpeg?format=750w",
-        title: "Crosby Liverpool",
-        description: "Property showcase for Candor Property's featuring modern residential development."
-      },
-      {
-        src: "https://www.youtube.com/embed/tCOkb3iDK58?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a42c6cc5-ea36-4eee-830b-b5fa1a9ba295/IMG_9769.jpeg?format=750w",
-        title: "The Rhino - Patagonia Xpedition Vehicle's",
-        description: "Adventure vehicle showcase highlighting rugged design and expedition capabilities."
-      },
-      {
-        src: "https://www.youtube.com/embed/T7ubiuZTq74?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/dc6534e1-f30d-41cc-9d51-07c75002d6d5/tempImagetduA0s.jpg?format=750w",
-        title: "Farr Hall Drive",
-        description: "Luxury property presentation by Bortram Luxury Homes with detailed interior and exterior views."
-      },
-      {
-        src: "https://www.youtube.com/embed/WnC1RaGb5tc?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/b3ee3cea-d363-42e3-a672-90b5ffb8220a/1+Main+Image.jpg?format=750w",
-        title: "New Cottage House",
-        description: "Fine & Country Property showcase featuring charming cottage design and premium location."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/ea08265c-1943-47a5-9118-d78f51a4cede/RENEW+Automotive+Jpeg.JPG?format=750w",
-        title: "Renew Automotive",
-        description: "Marketing campaign for automotive services featuring dynamic visual presentation."
-      },
-      {
-        src: "https://www.youtube.com/embed/qr8r-R_kSNU?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/3baf9dc5-0967-4fa1-af60-3d12dddee457/SELL+YOUR+CAR+TO+CALLUM.COM+-+Large.jpg?format=750w",
-        title: "Sell Your Car 2 Callum",
-        description: "Dynamic marketing campaign video promoting automotive services with engaging visuals."
-      },
-      {
-        src: "https://www.youtube.com/embed/2eqC80wZEPs?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/f929fd49-304e-4142-bc8f-80a842503c3f/22.jpg?format=750w",
-        title: "Haulfryn House",
-        description: "Candor Property's showcase featuring modern residential property with premium amenities."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/017cca3c-399c-4338-aca1-22b1a1e51010/Screenshot+2024-04-30+at+01.05.23.jpg?format=750w",
-        title: "Yacht Advertisement",
-        description: "Professional yacht marketing content by Bortram Marine showcasing luxury maritime vessels."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/f96db0d7-e81b-45d1-9884-03cde0ffc87d/DJI_0465.jpg?format=500w",
-        title: "Yacht Listing",
-        description: "Premium yacht listing presentation by Bortram Marine with detailed vessel showcase."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/54f7a0c2-6ee6-40f2-945a-230048fb077b/20240601-DSC06054.jpeg?format=750w",
-        title: "Yacht Photography",
-        description: "Professional yacht photography session capturing luxury vessels in stunning detail."
-      },
-      {
-        src: "https://www.youtube.com/embed/Ud74CejrrYQ?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/233ccb00-487e-4ef3-802a-b12ba8f92e50/IMG_4451.jpg?format=500w",
-        title: "LC Gardening & Tree Services",
-        description: "Professional service promotional video highlighting expertise in landscaping and tree care."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/3bbefe29-2150-46f7-ba5c-60bb55ea20d8/Screenshot+2024-05-22+at+16.50.54.png?format=1000w",
-        title: "Hallmark Developments",
-        description: "Development showcase for Candor Property featuring contemporary residential projects."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/c423a811-fab2-42b3-992a-a91c6c683845/20240521-DJI_0600.jpg?format=750w",
-        title: "Heydon Close, Formby",
-        description: "Property showcase in Formby by Candor Property featuring premium residential development."
-      },
-      {
-        src: "https://www.youtube.com/embed/hFJz5pZf4FE?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/9a347291-b5f5-41a2-90cb-6274d61cad53/20240722-DJI_0649.jpg?format=750w",
-        title: "Sandforth House",
-        description: "Candor Property showcase featuring contemporary design and modern living spaces."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/4414b1c7-5911-4412-a711-b8afa5ca7028/DJI_0656-Edit.jpg?format=750w",
-        title: "Speed Boat Listing",
-        description: "High-performance speedboat showcase by Bortram Marine featuring dynamic vessel presentation."
-      },
-      {
-        src: null,
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/76f4fe07-8130-4523-903a-f93133322f0b/13.jpg?format=750w",
-        title: "HDR Photography",
-        description: "Professional HDR photography showcase demonstrating advanced imaging techniques and stunning results."
-      },
-      {
-        src: "https://www.youtube.com/embed/-r3H57yCCe4?autoplay=1&mute=1&rel=0",
-        image: "https://images.squarespace-cdn.com/content/v1/66232c4dbbf84455e30c97a7/a8e9c1e8-717b-4f32-96a0-44f9db8ec4d2/DSC09101.jpg?format=750w",
-        title: "Watson Planthire LTD",
-        description: "Professional promotional video showcasing plant hire services and equipment capabilities."
-      }
-    ];
-
-    // Initialize gallery swiper
-    const gallerySwiper = new Swiper(".gallerySwiper", {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      speed: 500,
-      navigation: {
-        nextEl: ".gallery-button-next",
-        prevEl: ".gallery-button-prev",
-      },
-      keyboard: { enabled: true },
-      breakpoints: {
-        0: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 }
-      }
-    });
-
-    // Initialize media modal swiper
-    let mediaSwiper;
-
-    // Modal handling
-    const modal = document.getElementById('mediaModal');
-    const closeBtn = modal.querySelector('.close');
-    const mediaWrapper = document.getElementById('mediaWrapper');
-
-    function createMediaSlide(data, index) {
-      const slide = document.createElement('div');
-      slide.className = 'swiper-slide';
-
-      const mediaSlide = document.createElement('div');
-      mediaSlide.className = 'media-slide';
-
-      const mediaContent = document.createElement('div');
-      mediaContent.className = 'media-content';
-
-      if (data.src) {
-        // Video content
-        const iframe = document.createElement('iframe');
-        iframe.src = data.src;
-        iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
-        iframe.setAttribute('allowfullscreen', 'true');
-        mediaContent.appendChild(iframe);
-      } else {
-        // Image content
-        const img = document.createElement('img');
-        img.src = data.image;
-        img.alt = data.title;
-        mediaContent.appendChild(img);
-      }
-
-      const mediaInfo = document.createElement('div');
-      mediaInfo.className = 'media-info';
-      mediaInfo.innerHTML = `
-        <div class="media-title">${data.title}</div>
-        <div class="media-description">${data.description}</div>
-      `;
-
-      mediaSlide.appendChild(mediaContent);
-      mediaSlide.appendChild(mediaInfo);
-      slide.appendChild(mediaSlide);
-
-      return slide;
-    }
-
-    function initializeModal() {
-      // Clear existing slides
-      mediaWrapper.innerHTML = '';
-
-      // Create all slides
-      mediaData.forEach((data, index) => {
-        const slide = createMediaSlide(data, index);
-        mediaWrapper.appendChild(slide);
+    $(document).ready(function() {
+      // Custom Lightbox functionality
+      $('.custom-lightbox-trigger').on('click', function(e) {
+        e.preventDefault();
+        
+        var href = $(this).attr('href');
+        var type = $(this).data('type');
+        var lightbox = $('#customLightbox');
+        var mediaContainer = $('#lightboxMedia');
+        
+        // Clear previous content
+        mediaContainer.empty();
+        
+        if (type === 'youtube') {
+          // Create YouTube iframe
+          var iframe = $('<iframe>', {
+            src: href + '?autoplay=1',
+            frameborder: '0',
+            allowfullscreen: true,
+            allow: 'autoplay; encrypted-media'
+          });
+          mediaContainer.append(iframe);
+        } else {
+          // Create image element
+          var img = $('<img>', {
+            src: href,
+            alt: 'Lightbox Image'
+          });
+          mediaContainer.append(img);
+        }
+        
+        // Show lightbox
+        lightbox.fadeIn(300);
       });
-
-      // Initialize or update swiper
-      if (mediaSwiper) {
-        mediaSwiper.destroy(true, true);
-      }
-
-      mediaSwiper = new Swiper(".media-swiper", {
-        speed: 500,
-        effect: "slide",
-        spaceBetween: 0,
-        navigation: {
-          nextEl: ".media-swiper .swiper-button-next",
-          prevEl: ".media-swiper .swiper-button-prev",
-        },
-        keyboard: {
-          enabled: true,
-          onlyInViewport: false
+      
+      // Close lightbox when clicking close button
+      $('.custom-lightbox-close').on('click', function() {
+        $('#customLightbox').fadeOut(300);
+        // Stop YouTube video by clearing the iframe
+        setTimeout(function() {
+          $('#lightboxMedia').empty();
+        }, 300);
+      });
+      
+      // Close lightbox when clicking outside the content
+      $('#customLightbox').on('click', function(e) {
+        if (e.target === this) {
+          $(this).fadeOut(300);
+          // Stop YouTube video by clearing the iframe
+          setTimeout(function() {
+            $('#lightboxMedia').empty();
+          }, 300);
         }
       });
-    }
-
-    function openModalAt(index) {
-      initializeModal();
-      modal.classList.add('active');
-      modal.setAttribute('aria-hidden', 'false');
-      mediaSwiper.slideTo(index, 0, false);
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-
-      // Stop all videos
-      const iframes = modal.querySelectorAll('iframe');
-      iframes.forEach(iframe => {
-        const src = iframe.src;
-        iframe.src = '';
-        iframe.src = src.replace('autoplay=1', 'autoplay=0');
+      
+      // Close lightbox with ESC key
+      $(document).on('keyup', function(e) {
+        if (e.keyCode === 27) { // ESC key
+          $('#customLightbox').fadeOut(300);
+          // Stop YouTube video by clearing the iframe
+          setTimeout(function() {
+            $('#lightboxMedia').empty();
+          }, 300);
+        }
       });
-    }
-
-    // Event listeners
-    document.querySelectorAll('.product-block').forEach(card => {
-      card.addEventListener('click', () => {
-        const index = parseInt(card.dataset.index, 10) || 0;
-        openModalAt(index);
-      });
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (modal.classList.contains('active')) {
-        if (e.key === 'Escape') closeModal();
-        if (e.key === 'ArrowRight') mediaSwiper?.slideNext();
-        if (e.key === 'ArrowLeft') mediaSwiper?.slidePrev();
-      }
     });
   </script>
 </body>
